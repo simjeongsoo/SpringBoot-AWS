@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringRunner; // Junit4
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -23,7 +23,7 @@ public class HelloControllerTest {
 
     // 스프링이 관리하는 Bean 주입
     @Autowired
-    // 웹 API테스트 할때 사용 , 스프링 MVC 테스트의 시작점
+    // 웹 API 테스트 할때 사용 , 스프링 MVC 테스트의 시작점
     // 이 클래스를 통해 HTTP GET, POST 등에 대한 API 테스트를 수행
     private MockMvc mvc;
 

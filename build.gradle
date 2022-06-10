@@ -20,6 +20,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    implementation 'org.projectlombok:lombok'
+
 }
 repositories {
     mavenCentral()
