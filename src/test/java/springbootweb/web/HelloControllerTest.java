@@ -8,8 +8,8 @@ import org.springframework.test.context.junit4.SpringRunner; // Junit4
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.is;
 
 // 테스트를 진행할 때 JUnit 에 내장된 실행자 외에 다른 실행자를 실행
 // SpringRunner 라는 실행자 사용
@@ -27,11 +27,11 @@ public class HelloControllerTest {
     // 이 클래스를 통해 HTTP GET, POST 등에 대한 API 테스트를 수행
     private MockMvc mvc;
 
-    @Test
-    public void hello가_리턴된다() throws Exception{
+    @Test // api 1 test
+    public void hello가_리턴된다() throws Exception{ // test passed
         String hello = "hello";
 
-        // MockMVC를 통해 /hello 주소로 HTTP GET 요청을 함
+        // MockMVC 를 통해 /hello 주소로 HTTP GET 요청을 함
         // 체이닝이 지원되어여러 검증기능 선언 가능
         mvc.perform(get("/hello"))
                 .andExpect(status().isOk())
@@ -46,5 +46,28 @@ public class HelloControllerTest {
                 *   = 응답 본문의 내용 검증
                 *   = Controller 에서 "hello"를 리턴하기 때문에 이 값이 맞는지 검증
                 * */
+    }
+
+    @Test //api 2 test
+    public void helloDto가_리턴된다() throws Exception { // test passed , JSON 이 리턴되는 API 가 정상적으로 테스트가 통과하는것 확인
+        String name = "hello";
+        int amount = 1000;
+
+        mvc.perform(get("/hello/dto")
+                        .param("name", name)
+                        .param("amount", String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
+
+        /*
+        * .param() : API 테스트할 때 사용될 요청 파라미터를 설정
+        *            단, 값은 String 만 허용
+        *            숫자/날짜 등의 데이터도 등록할 때 문자열로 변경해야만 가능
+        *
+        * jsonPath() : JSON 응답값을 필드별로 검증 할 수 있는 메소드
+        *              $를 기준으로 필드명을 명시
+        *              여기서는 name 과 amount 를 검증하거나 $.name, $.mount 로 검증
+        * */
     }
 }
