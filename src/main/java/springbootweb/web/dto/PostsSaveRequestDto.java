@@ -7,7 +7,7 @@ import springbootweb.domain.posts.Posts;
 
 @Getter
 @NoArgsConstructor
-public class PostsSaveRequestDto {
+public class PostsSaveRequestDto { // Controller -> Service
     private String title;
     private String content;
     private String author;
