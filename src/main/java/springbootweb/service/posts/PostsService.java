@@ -11,9 +11,9 @@ import springbootweb.web.dto.PostsSaveRequestDto;
 public class PostsService {
     private final PostsRepository postsRepository;
 
-    @Transactional
+    // JPA를 통한 모든 데이터 변경은 트랜잭션 안에서 실행해야 한다.
+    @Transactional // for jpa
     public Long save(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity()).getId();
     }
-
 }
