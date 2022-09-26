@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import springbootweb.service.posts.PostsService;
 import springbootweb.web.dto.PostsSaveRequestDto;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor // 생성자 주입(lombok)
 @RestController
 public class PostsApiController {
     private final PostsService postsService;
