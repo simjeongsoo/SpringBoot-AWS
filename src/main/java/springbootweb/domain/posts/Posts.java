@@ -30,6 +30,7 @@ public class Posts { // 실제 DB 테이블과 매칭될 클래스 (=Entity 클�
     }
 
     public void update(String title, String content) {
+        // 더티 체킹 (dirty checking)
         this.title = title;
         this.content = content;
     }
