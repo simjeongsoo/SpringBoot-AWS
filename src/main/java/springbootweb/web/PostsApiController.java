@@ -3,6 +3,7 @@ package springbootweb.web;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import springbootweb.service.posts.PostsService;
+import springbootweb.web.dto.PostsResponseDto;
 import springbootweb.web.dto.PostsSaveRequestDto;
 import springbootweb.web.dto.PostsUpdateRequestDto;
 
@@ -16,10 +17,13 @@ public class PostsApiController {
         return postsService.save(requestDto);
     }
 
-    @PutMapping("/api/v1/posts/{id}") // 수정 api 
+    @PutMapping("/api/v1/posts/{id}") // 수정 api
     public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
         return postsService.update(id, requestDto);
     }
 
-    // 조회
+    @GetMapping("/api/v1/posts/{id}")// 조회
+    public PostsResponseDto findById(@PathVariable Long id) {
+        return postsService.findById(id);
+    }
 }
