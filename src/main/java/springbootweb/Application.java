@@ -1,11 +1,12 @@
 package springbootweb;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 // main class
 // @SpringBootApplication 를 통해 스프링부트 자동생성 , Bean 읽기 생성 자동설정
+@EnableJpaAuditing // JPA Auditing 활성화
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
