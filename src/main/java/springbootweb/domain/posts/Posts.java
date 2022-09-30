@@ -3,13 +3,14 @@ package springbootweb.domain.posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import springbootweb.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
 @Getter // 롬복 어노테이션 , 클래스 내 모든 필드의 Getter 메소드 자동 생성
 @NoArgsConstructor // 롬복 어노테이션 , 기본 생성자 자동 추가 public Posts(){}과 같은 효과
 @Entity // JPA 어노테이션
-public class Posts { // 실제 DB 테이블과 매칭될 클래스 (=Entity 클래스)
+public class Posts extends BaseTimeEntity { // 실제 DB 테이블과 매칭될 클래스 (=Entity 클래스)
     @Id // 해당 테이블의 PK 필드를 나타냄
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK 생성규칙 지정 ,GenerationType.IDENTITY=auto_increment
     private Long id;
