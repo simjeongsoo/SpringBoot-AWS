@@ -41,6 +41,8 @@ dependencies {
     // mustache, 서버 템플릿 엔진
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
 
+    // 클라이언트 입장에서 소셜 기능 구현 시 필요한 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 }
 repositories {
     mavenCentral()
