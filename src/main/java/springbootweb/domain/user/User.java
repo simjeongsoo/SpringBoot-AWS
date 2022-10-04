@@ -38,6 +38,7 @@ public class User extends BaseTimeEntity { // 사용자 정보를 담당할 도�
     }
 
     public User update(String name, String picture) {
+        //--이름, 프로필사진 이 변경되면 User 엔티티에 반영--//
         this.name = name;
         this.picture = picture;
 
