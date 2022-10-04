@@ -14,7 +14,7 @@ public class HelloController {
     @GetMapping("/hello") // api 1
     public String hello() {
         return "hello";
-        // "/hello" 로 1요청이 오면 문자열 hello 를 반환하는 기능을 가짐
+        // "/hello" 로 요청이 오면 문자열 hello 를 반환하는 기능을 가짐
     }
 
     // HelloController 에서 ResponseDto 사용
