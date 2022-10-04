@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import springbootweb.config.auth.LoginUser;
 import springbootweb.config.auth.dto.SessionUser;
 import springbootweb.service.posts.PostsService;
 import springbootweb.web.dto.PostsResponseDto;
@@ -19,17 +20,13 @@ public class IndexController {
     private final PostsService postsService;
     private final HttpSession httpSession;
 
-    @GetMapping("/")
-    public String index(Model model) { // home view mapping
+    @GetMapping("/") // home view mapping
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
 
-        //--index.mustache 에서 userName을 사용할 수 있게 IndexController에서 userName을 model에 저장하는 코드--//
-
-        // CustomOAuth2UserService 에서 로그인 성공 시 세션에 SessionUser를 저장하도록 구성
-        // 로그인 성공 시 httpSession.getAttribute(”user”)에서 값을 가져 올 수 있음
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        //--- 기존에(User) httpSession.getAttribute(”user”) 로 가져오던 세션값이 개선
+        //- 이제는 어느 컨트롤러든지 @LoginUser 만 사용하면 세션 정보를 가져올 수 있게 됨--//
         if (user != null) {
-            // 세션에 저장된 값이 있을때만 model에 userName으로 등록
             model.addAttribute("userName", user.getName());
         }
 
